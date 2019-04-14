@@ -11,6 +11,6 @@ Includes:
 - MST time on Mars;
 - Comparison of speed of fast objects;
 - "On this day" event;
-- Moon phase
-- Dates in ancient Greek, Babylonian, Jewish and Roman
-- Mayan calendar
+- Moon phase;
+- Dates in ancient Greek, Babylonian, Jewish and Roman;
+- Mayan calendar.
