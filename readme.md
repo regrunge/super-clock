@@ -4,6 +4,8 @@ Written in PHP, jQuery and CSS3.
 
 It is just a proof of concept but it could be useful for the Math or the CSS effects (apart from the first clock all animations are in CSS3).
 
+More info at <a href="https://elvis.guru/blog/superClock_1" target="_blank">https://elvis.guru/blog/superClock_1</a> && <a href="https://elvis.guru/blog/superClock_2" target="_blank">https://elvis.guru/blog/superClock_2</a>
+
 ### Includes:
 - Closest Equinox / Solstice event;
 - World population estimation;
