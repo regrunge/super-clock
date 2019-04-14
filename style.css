@@ -1,0 +1,902 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo|Oranienbaum|Gugi');
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #111111;
+}
+
+#modal {
+    position: fixed;
+    left: -600px;
+    top: 20px;
+    padding: 12px 24px;
+    background: rgb(217, 57, 28);
+    border: 2px solid white;
+    border-radius: 6px;
+    box-shadow: 3px 4px 11px 2px rgba(0,0,0,0.25);
+    box-sizing: border-box;
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 16px;
+    transition: left 500ms;
+    max-width: 300px;
+    z-index: 99;
+}
+
+#modal.on {
+    left: 20px;
+    top: 20px;
+}
+
+#background {
+    box-sizing: border-box;
+    padding: 24px;
+    margin: 24px auto;
+    max-width: 652px;
+    background-color: rgb(0, 0, 0);
+    background-image: linear-gradient(to right, rgba(22, 22, 22, 0.9), rgba(38, 38, 38, 0.7) 20%, rgba(38, 38, 38, 0.7) 80%, rgba(22, 22, 22, 0.9)), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(to bottom, rgb(8, 8, 8), rgb(32, 32, 32));
+    background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
+    background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
+    border: 1px solid #000;
+    border-radius: 12px;
+    position: relative;
+}
+
+.metal {
+    background-image: linear-gradient(180deg, #e6e6e6 0%, #eeeeee 100%);
+    background-size: 2px 2px;
+    border: 1px solid rgba(0,0,0,1);
+    border-radius: inherit;
+    margin: inherit;
+    padding: 6px 12px;
+    position: relative;
+    box-shadow: 0 -2px 6px 1px rgba(0,0,0,0.75), 0 1px 2px 1px rgba(255,255,255,0.25), inset 0 -1px 1px 1px rgba(0,0,0,1);
+    text-shadow: 0 1px 1px rgba(255,255,255,1);
+    color: black;
+    transition: all 2s;
+    cursor: pointer;
+}
+
+.metal::after {
+    content: '';
+    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 51%, rgba(255,255,255,0) 75%, rgba(255,255,255,1) 100%);
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+}
+
+.metal:hover {
+    opacity: 0.8;
+    box-shadow: none;
+}
+
+.metal:active {
+    opacity: 1;
+    box-shadow: none;
+}
+
+.title {
+    font-size: 40px;
+    text-transform: capitalize;
+    font-family: 'Oranienbaum', serif;
+}
+
+.quote {
+    font-size: 24px;
+    font-style: italic;
+}
+
+.display {
+    border: 1px solid rgba(0,44,44,0.85);
+    border-radius: 12px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 100%), linear-gradient(to bottom, rgba(51,255,51,0.75) 50%, rgba(51,255,51,1) 51%), linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.75) 100%), black;
+    background-size: cover, 4px 4px, cover, cover;
+    padding: 6px 12px;
+    color: rgba(255,255,255,1);
+    font-family: 'Gugi', monospace;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-shadow: 0px -1px 1px rgba(0,0,0,0.2);
+    position: relative;
+    box-shadow: 0 -1px 0px 0px rgba(0,0,0,0.75), 0 1px 0px 0px rgba(255,255,255,0.25), inset 0px 4px 1px 1px rgba(0,0,0,0.25);
+}
+
+.display:after{
+    content: '';
+    background-image: linear-gradient(-135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0) 51%, rgba(0,0,0,0.1) 100%), linear-gradient(to bottom, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.25) 100%);
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 18px 1px 3px rgba(255,255,255,0.1);
+}
+
+.display.big{
+    font-size: 100px;
+}
+
+/* analog clock */
+.analog-clock .clock {
+    width: 300px;
+    height: 300px;
+}
+
+.analog-clock div, .analog-clock span {
+    box-sizing: border-box;
+}
+
+.analog-clock div {
+    font-family: 'Arvo', serif;
+    font-size: 8px;
+}
+
+.analog-clock .cover {
+    position: relative;
+    background: linear-gradient(to top right, rgba(255,255,255,0.5) 15%, rgba(0,0,0,0.15) 30%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 75%, rgba(255,255,255,0.1) 75%, rgba(255,255,255,0.5) 85%);
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 4px solid rgba(127,127,127,0.36);
+    box-shadow: 0px -2px 1px 0px rgba(255,255,255,0.5), 0px 1px 0px 0px rgba(0,0,0,0.5);
+}
+
+.analog-clock .cover::before{
+    content: attr(data-logo) "\A" attr(data-brand);
+    display: block;
+    position: absolute;
+    color: rgba(0,0,0,0.67);
+    top: 126px;
+    left: 100px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16px;
+    letter-spacing: 5px;
+    font-family: 'Oranienbaum', serif;
+    white-space: pre;
+    text-transform: uppercase;
+    text-shadow: 0 7px 5px rgba(0,0,0,0.2);
+}
+
+.analog-clock.mars .cover::before{
+    color: rgba(255,255,255,0.67);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+.analog-clock .cover::after{
+    content: '';
+    background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%, rgba(0,0,0,0) 49%, rgba(255,80,0,0.75) 50%, rgba(255,80,0,0.75) 51%, rgba(0,0,0,0) 52%, rgba(0,0,0,0) 100%
+    );
+    display: block;
+    position: absolute;
+    width: 75px;
+    height: 25px;
+    border-radius: 25px;
+    right: 1px;
+    top: 131px;
+    box-shadow: 0 0 0 99999px rgba(255, 255, 255, .35), inset 1px 1px 2px 1px rgba(0, 0, 0, .05);
+    border: 1px solid rgba(255, 255, 255, 1)
+}
+
+.analog-clock.mars .cover::after{
+    background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 0%, rgba(0,0,0,0) 49%, rgba(0,0,255,0.75) 50%, rgba(0,0,255,0.75) 51%, rgba(0,0,0,0) 52%, rgba(0,0,0,0) 100%
+    );
+    box-shadow: 0 0 0 99999px rgba(255, 255, 255, .35), inset 1px 1px 2px 1px rgba(0, 0, 0, .25);
+    border: 1px solid rgba(200, 200, 200, 0.75)
+}
+
+.analog-clock .clock .dial{
+    position: relative;
+    margin: auto;
+    background: rgb(255,255,255);
+    box-shadow: rgba(0,0,0,1) inset 0px 0px 6px 0;
+    border-radius: 100%;
+}
+
+.analog-clock.mars .clock .dial{
+    color: white;
+    background: rgb(217, 57, 28);
+}
+
+.analog-clock .clock .dial div{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation-name: tick-rotation;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.analog-clock .clock .dial span {
+    display: block;
+    width: 50%;
+    height: 32px;
+    text-align: right;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    padding-right: 6px;
+    margin-bottom: -32px;
+    line-height: 28px;
+}
+
+.analog-clock .clock .dial span::after, .analog-clock .clock .dial span::before {
+    content: '_';
+    position: absolute;
+    opacity: 0.5;
+    right: 0;
+    top: -4px;
+    font-size: 8px;
+    margin-left: -2px;
+    vertical-align: bottom;
+}
+
+.analog-clock .clock .dial span::before {
+    content: '-';
+    opacity: 0.2;
+    top: 7px;
+}
+
+.analog-clock .clock .dial.minutes {
+    color: white;
+    background: rgb(60,60,60);
+    font-weight: bold;
+}
+
+.analog-clock.mars .clock .dial.minutes {
+    color: rgb(60,60,60);
+    background: white;
+}
+
+.analog-clock .clock .dial.hours {
+    font-size: 24px;
+}
+
+.analog-clock .clock .dial.hours span {
+    font-size: 24px;
+    font-family: 'Oranienbaum', serif;
+}
+
+.analog-clock.mars .clock .dial.hours span {
+    font-size: 14px;
+    text-shadow: 0 0px 2px rgba(0,0,0,0.5);
+    font-family: 'Arvo', serif;
+    padding-right: 16px;
+}
+
+.analog-clock .clock .dial.hours span::after, .analog-clock .clock .dial.hours span::before {
+    content: ''
+}
+
+.analog-clock .zero {
+    color: red;
+}
+
+.analog-clock.mars .zero {
+    color: darkred;
+}
+
+@keyframes tick-rotation {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.analog-clock div.date {
+    font-family: 'Oranienbaum', serif;
+    font-size: 24px;
+    text-align: center;
+    padding: 6px;
+    margin: 24px 12px;
+    border-radius: 6px;
+}
+
+/* moon phase */
+#moon-phase {
+    margin-top: 24px;
+    display: flex;
+    margin-bottom: 24px;
+}
+
+#moon-phase div {
+    box-sizing: border-box;
+}
+
+#moon-phase .container {
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
+    min-height: 150px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 100%;
+    position: relative;
+    box-shadow: -4px -4px 14px 4px rgba(255,255,255,0.1);
+    border-width: 1px;
+    border-style: solid;
+    animation: color_change 5s infinite alternate;
+}
+
+@keyframes color_change {
+    from {
+        border-color: rgba(255,255,255,1);
+        box-shadow: -4px -4px 24px 6px rgba(255,255,255,0.5);
+    }
+    to {
+        border-color: rgba(127,127,127,0);
+        box-shadow: 0px 0px 14px 4px rgba(255,255,255,0);
+    }
+}
+
+@keyframes shake {
+    10%, 90%, 30%, 50%, 70% {
+        transform: translate3d(-0.3px, 0, 0);
+    }
+
+    20%, 80%, 40%, 60%  {
+        transform: translate3d(0, 0.3px, 0);
+    }
+}
+
+#moon-phase .description {
+    vertical-align: top;
+    padding-left: 16px;
+    margin: 0 0 0 24px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    border-radius: 6px;
+}
+
+#moon-phase .container .moon {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background-image: linear-gradient(to bottom right, white 0%, #aaaaaa 100%);
+}
+
+#moon-phase .container .earth-shadow {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.earth-shadow.full_moon {
+    background: none;
+}
+
+.earth-shadow.new_moon {
+    background: rgba(0,0,0,0.8);
+}
+
+.earth-shadow.waning_crescent {
+    background: radial-gradient(120px 110px ellipse at 75% 50%, rgba(0,0,0,0.8), rgba(0,0,0,0.8) 75%, rgba(0,0,0,0) 75%);
+}
+
+.earth-shadow.waxing_crescent {
+    background: radial-gradient(120px 110px ellipse at 25% 50%, rgba(0,0,0,0.8), rgba(0,0,0,0.8) 75%, rgba(0,0,0,0) 75%);
+}
+
+.earth-shadow.waning_gibbous {
+    background: radial-gradient(120px 110px ellipse at 25% 50%, rgba(0,0,0,0), rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
+}
+
+.earth-shadow.waxing_gibbous {
+    background: radial-gradient(120px 110px ellipse at 75% 50%, rgba(0,0,0,0), rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 75%);
+}
+
+.earth-shadow.last_quarter {
+    background: radial-gradient(53px 250px ellipse at 75% 50%, rgba(0,0,0,0.8), rgba(0,0,0,0.8) 75%, rgba(0,0,0,0) 75%);
+}
+
+.earth-shadow.first_quarter {
+    background: radial-gradient(53px 250px ellipse at 25% 50%, rgba(0,0,0,0.8), rgba(0,0,0,0.8) 75%, rgba(0,0,0,0) 75%);
+}
+
+.earth-shadow.waxing_crescent {
+    background: radial-gradient(120px 110px ellipse at 25% 50%, rgba(0,0,0,0.8), rgba(0,0,0,0.8) 75%, rgba(0,0,0,0) 75%);
+}
+
+/* CALENDARS @start */
+#date .container, #calendars .container {
+    margin: 24px 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#calendars .container .flip {
+    position: relative;
+    color: white;
+    font-size: 42px;
+    padding: 8px 4px;
+    background: #222222;
+    border-radius: 4px;
+    width: 64px;
+    height: 72px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 62px;
+    box-shadow: 0 -1px 0px 0px rgba(255,255,255,0.5), 0 1px 1px 1px rgba(0,0,0,0.25), inset 0 -2px 0px 0px rgba(0,0,0,0.5), inset 0 2px 0px 0px rgba(255,255,255,0.5);
+    text-shadow: 0 1px 1px black;
+    margin: 0 3px 6px;
+    font-family: 'Gugi', monospace;
+}
+
+#calendars .container .flip::after {
+    content: '';
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 51%, rgba(255,255,255,0.2) 51%, rgba(255,255,255,0.2) 52%, rgba(255,255,255,0.1) 52%, rgba(255,255,255,0.1) 100%);
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    text-align: center;
+    color: beige;
+    line-height: 65px;
+    text-shadow: -2px 0px 0px rgba(0,0,0,0.5);
+}
+
+#calendars .container .mayan .label {
+    background: white;
+    border-radius: 4px;
+    margin: 0 3px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 2px 0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+#calendars .container .mayan {
+    display: flex;
+    justify-content: center;
+    background: repeating-linear-gradient(45deg, rgba(0,0,0,0) 5px, rgba(10,35,45,0.498039) 5px, rgba(10,35,45,0.498039) 10px, rgba(211,119,111,0) 10px, rgba(211,119,111,0) 35px, rgba(211,119,111,0.498039) 35px, rgba(211,119,111,0.498039) 40px, rgba(10,35,45,0.498039) 40px, rgba(10,35,45,0.498039) 50px, rgba(10,35,45,0) 50px, rgba(10,35,45,0) 60px, rgba(211,119,111,0.498039) 60px, rgba(211,119,111,0.498039) 70px, rgba(247,179,84,0.498039) 70px, rgba(247,179,84,0.498039) 80px, rgba(247,179,84,0) 80px, rgba(247,179,84,0) 90px, rgba(211,119,111,0.498039) 90px, rgba(211,119,111,0.498039) 110px, rgba(211,119,111,0) 110px, rgba(211,119,111,0) 120px, rgba(10,35,45,0.498039) 120px, rgba(10,35,45,0.498039) 140px), repeating-linear-gradient(135deg, rgba(0,0,0,0) 5px, rgba(10,35,45,0.498039) 5px, rgba(10,35,45,0.498039) 10px, rgba(211,119,111,0) 10px, rgba(211,119,111,0) 35px, rgba(211,119,111,0.498039) 35px, rgba(211,119,111,0.498039) 40px, rgba(10,35,45,0.498039) 40px, rgba(10,35,45,0.498039) 50px, rgba(10,35,45,0) 50px, rgba(10,35,45,0) 60px, rgba(211,119,111,0.498039) 60px, rgba(211,119,111,0.498039) 70px, rgba(247,179,84,0.498039) 70px, rgba(247,179,84,0.498039) 80px, rgba(247,179,84,0) 80px, rgba(247,179,84,0) 90px, rgba(211,119,111,0.498039) 90px, rgba(211,119,111,0.498039) 110px, rgba(211,119,111,0) 110px, rgba(211,119,111,0) 140px, rgba(10,35,45,0.498039) 140px, rgba(10,35,45,0.498039) 160px), rgb(234, 213, 185);
+    border-radius: 6px;
+    padding: 16px 8px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 -1px 1px 1px black, inset 0 2px 4px rgba(0,0,0,0.6), inset 0 -1px 1px 1px rgba(255,255,255,0.25);
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#calendars .container .others {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 16px;
+}
+
+#calendars .container .others div {
+    background: white;
+    padding: 4px 16px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+#closest_event {
+    display:flex;
+    justify-content: space-between;
+    width: 43%;
+}
+
+#closest_event .sign{
+    border: 1px solid lightslategrey;
+    border-radius: 6px;
+    padding: 16px 8px 0;
+    text-align: center;
+    font-size: 72px;
+    line-height: 72px;
+    box-sizing: border-box;
+    transition: border-color 2s ease-out;
+    cursor: pointer;
+}
+
+#closest_event .sign:hover{
+    border: 1px solid rebeccapurple;
+}
+
+#closest_event .other{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+#closest_event .other div{
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* CALENDARS @end */
+
+/* DIGITAL CLOCK @start */
+.digital-clock {
+    background: rgb(48, 0, 0);
+    padding: 16px 0;
+    border-radius: 16px;
+    box-shadow: inset 0 3px 3px 2px rgba(0,0,0,0.25), 0px 1px 1px 1px rgba(255,255,255,0.05);
+    max-width: 320px;
+    position: relative;
+}
+
+.digital-clock:after {
+    content: '';
+    background: linear-gradient(to bottom left, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0) 51%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.digital-clock div {
+    position: relative;
+}
+
+.digital-clock .shake {
+    animation: shake 4s cubic-bezier(.36,.07,.19,.97) both infinite;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+    backface-visibility: hidden;
+}
+
+.digital-clock .colon {
+    position: relative;
+}
+
+.digital-clock .colon:before, .digital-clock .colon:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+    background-color: rgb(208,0,0);
+    display: block;
+    position: relative;
+    top: 12px;
+}
+
+.digital-clock .colon:after {
+    top:22px;
+}
+
+.digital-clock, .digital-clock .shake, .digital-clock .hours, .digital-clock .minutes, .digital-clock .seconds {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 100px;
+}
+
+.digital-clock div.top, .digital-clock div.bottom {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 8px solid rgb(64,0,0);
+    box-sizing: border-box;
+    transition: all 250ms ease-out;
+}
+
+.digital-clock div.top {
+    border-bottom-width: 4px;
+}
+
+.digital-clock div.bottom {
+    border-top-width: 4px;
+}
+
+.digital-clock div.top:after, .digital-clock div.top:before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgb(48,0,0);
+    position: absolute;
+    z-index: 3;
+    left: -28px;
+    top: 0;
+    transform: rotate(45deg);
+    box-sizing: border-box;
+}
+
+.digital-clock div.top:before {
+    left: 0;
+    border-top:none;
+    border-right:none;
+}
+
+.digital-clock div.top:after {
+    border-left:none;
+    border-bottom:none;
+}
+
+.digital-clock div.one .top, .digital-clock div.one .bottom, .digital-clock div.six .top, .digital-clock div.seven .bottom {
+    border-right-color: rgb(208,0,0);
+}
+
+.digital-clock div.two .top, .digital-clock div.three .top, .digital-clock div.three .bottom, .digital-clock div.five .bottom{
+    border-top-color: rgb(208,0,0);
+    border-right-color: rgb(208,0,0);
+    border-bottom-color: rgb(208,0,0);
+}
+
+.digital-clock div.four .top, .digital-clock div.zero .bottom{
+    border-left-color: rgb(208,0,0);
+    border-right-color: rgb(208,0,0);
+    border-bottom-color: rgb(208,0,0);
+}
+
+.digital-clock div.five .top, .digital-clock div.two .bottom {
+    border-top-color: rgb(208,0,0);
+    border-left-color: rgb(208,0,0);
+    border-bottom-color: rgb(208,0,0);
+}
+
+.digital-clock div.seven .top, .digital-clock div.four .bottom, .digital-clock div.nine .bottom{
+    border-top-color: rgb(208,0,0);
+    border-right-color: rgb(208,0,0);
+}
+
+.digital-clock div.six .bottom, .digital-clock div.eight .bottom, .digital-clock div.eight .top, .digital-clock div.nine .top{
+    border-color: rgb(208,0,0);
+}
+
+.digital-clock div.zero .top{
+    border-top-color: rgb(208,0,0);
+    border-left-color: rgb(208,0,0);
+    border-right-color: rgb(208,0,0);
+}
+/* DIGITAL CLOCK @end */
+
+/* WORLD POPULATION @start */
+#world-population {
+    display: flex;
+    justify-content: space-between;
+    margin: 24px 0;
+    font-family: 'Oranienbaum', serif;
+}
+
+#world-population .integral, #world-population .decimal{
+    display: inline-flex;
+    background: #aaa;
+    justify-content: space-around;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 6px;
+    position: relative;
+}
+
+#world-population .integral::after, #world-population .decimal::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.3) 50%,rgba(255,255,255,0) 51%, rgba(0,0,0,0.5) 94%, rgba(255,255,255,0.5) 100%);
+    border: 3px solid #bbb;
+    border-radius: 6px;
+    box-shadow: inset 0 12px 2px 0 rgba(0,0,0,0.15), 0 4px 2px 0 rgba(0,0,0,0.9);
+    box-sizing: border-box;
+}
+
+#world-population .decimal::after{
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 50%,rgba(255,255,255,0) 51%, rgba(0,0,0,0.3) 94%, rgba(255,255,255,0.5) 100%);
+}
+
+#world-population .integral div, #world-population .decimal div {
+    width: 36px;
+    background-image: linear-gradient(to bottom, rgba(40,20,10,0.25) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0) 55%, rgba(20,20,10,0.25) 100%);
+    text-align: center;
+    height: 50px;
+    vertical-align: middle;
+    font-size: 36px;
+    line-height: 55px;
+    box-shadow: inset 0px 1px 2px 0px rgba(0,0,0,0.5);
+    border-right: 1px solid rgba(0,0,0,0.5);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.36);
+}
+
+#world-population .integral div:first-child, #world-population .decimal div:first-child{
+    border-left: 1px solid rgba(0,0,0,0.5);
+}
+
+#world-population .integral div{
+    background-color: white;
+}
+
+#world-population .decimal div{
+    background-color: rgb(208,0,0);
+    color: white;
+}
+
+/* WORLD POPULATION @end */
+
+/* SPEED @start */
+#speed .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#speed .container .odometer {
+    width: 110px;
+    height: 200px;
+    position: relative;
+}
+
+#speed .container .odometer span{
+    color: white;
+    font-size: 9px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    background: #333;
+    padding: 4px 2px 3px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0px rgba(255,255,255,0.2), inset 0 2px 2px 0px black;
+    text-shadow: 0 1px 0px black;
+    letter-spacing: 1px;
+}
+
+#speed .container .odometer span:first-child{
+    text-transform: capitalize;
+}
+
+#speed .container .odometer div, #speed .container .odometer div::after {
+    width: 100px;
+    height: 100px;
+    animation-name: tick-rotation;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 4px 1px rgba(0,0,0,1);
+    margin: 0 auto;
+}
+
+#speed .container .odometer div::after, #speed .container .odometer div::before {
+    content: '';
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(to bottom, white 0%, #eee 100%);
+    border-radius: 50%;
+    position: absolute;
+    left: 15px;
+    bottom: -15px;
+    box-shadow: 0 28px 10px 4px rgba(0,0,0,0.5);
+    animation-direction: normal;
+    animation-duration: inherit;
+}
+
+#speed .container .odometer div::before {
+    width: 20px;
+    height: 20px;
+    left: 40px;
+    top: 10px;
+    background: black;
+    box-shadow: 0 0px 2px 1px rgba(0,0,0,0.5);
+}
+/* SPEED @end */
+
+#on-this-day {
+    margin-bottom: 24px;
+}
+
+#on-this-day .container {
+    border-radius: 6px;
+}
+
+
+/* TIMELINE @start */
+#timeline .slides{
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
+}
+
+#timeline .epoch{
+    display: inline-block;
+    width: auto;
+    height: 60px;
+    background:
+            linear-gradient(to bottom, transparent 0%, transparent 98%, rgba(0,0,0,0.1) 100%) repeat-x,
+            linear-gradient(to right, transparent 0%, transparent 98%, rgba(0,0,0,0.5) 100%) repeat-x,
+            linear-gradient(to right, transparent 0%, transparent 95%, rgba(0,0,0,0.2) 100%) repeat-x,
+            linear-gradient(to right, white 0%, white 98%, rgba(0,0,0,0.5) 100%) repeat-x,
+            white;
+    background-size: 1px 24px, 48px 10px, 24px 8px, 48px 12px, 50% 50%;
+    background-position: 0 0, 24px 14px, 12px 16px, 0 12px, 0 0;
+    position: relative;
+}
+
+
+#timeline .epoch div{
+    margin: 32px 0 0;
+    display: inline-block;
+    width: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#timeline .epoch .label{
+    position: relative;
+    left: 0;
+    margin: 0;
+    padding: 0 24px;
+}
+
+.info {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: white;
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px 1px black;
+    font-family: monospace;
+    margin: -15px;
+    z-index: 999;
+    left: 0px;
+    top: 0px;
+    animation: color_change 2s infinite alternate;
+    float: left;
+}
+
+.info.right {
+    float: right;
+}
+
+.info:hover::after{
+    content: attr(data-text);
+    position: absolute;
+    background: rgba(255,255,255,0.9);
+    width: 400px;
+    padding: 12px;
+    text-align: left;
+    left: 14px;
+    top: 14px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 16px 1px rgba(0,0,0,1);
+    font-family: "Arvo", sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.info.right:hover::after{
+    left: -422px;
+    text-align: right;
+}
+/* TIMELINE @end */
+
+
+

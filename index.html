@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SuperClock</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="background">
+    <div class="info" data-text="A digital clock with client time in javascript. Every digit is made by 4 transparent squares with thick borders.">i</div>
+    <div class="info right" data-text="Here I am checking the closest equinox/solstice event to today. The zodiac sign represents the month it is in.">i</div>
+    <div style="display: flex; justify-content: space-between;">
+        <div class="digital-clock">
+            <div class="shake">
+                <div class="hours">
+                    <div class="digit zero">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                    <div class="digit zero">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+                <div class="colon"></div>
+                <div class="minutes">
+                    <div class="digit zero">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                    <div class="digit zero">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+                <div class="colon"></div>
+                <div class="seconds">
+                    <div class="digit zero">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                    <div class="digit zero">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="closest_event">
+            <div class="sign"></div>
+            <div class="other"></div>
+        </div>
+    </div>
+
+
+    <div id="world-population">
+        <div class="info" data-text="A good approximation of current world population and its increase in time.">i</div>
+        <div class="integral"></div><div class="decimal"></div>
+    </div>
+
+    <div class="info" data-text="A fancy representation of UTC time on Earth. Animated by CSS: not terribly precise.">i</div>
+    <div class="info right" data-text="The same fancy representation of Mars Standard Time. Animated by CSS: not terribly precise.">i</div>
+    <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+        <div class="analog-clock earth">
+            <div class="clock">
+                <div class="dial seconds" data-start="30" data-qty="60" data-size="0.98" data-rotation="60000"></div>
+
+                <div class="dial minutes" data-start="30.5" data-qty="60" data-size="0.84" data-rotation="3600000"></div>
+                <div class="dial hours" data-start="12" data-qty="12" data-size="0.69" data-rotation="86400000" data-zeroed="0"></div>
+                <div class="cover" data-logo="&#x2641;" data-brand="earth">
+                </div>
+            </div>
+        </div>
+
+        <div class="analog-clock mars">
+            <div class="clock">
+                <div class="dial seconds" data-start="30" data-qty="60" data-size="0.98" data-rotation="61541.66664"></div>
+
+                <div class="dial minutes" data-start="30.5" data-qty="60" data-size="0.84" data-rotation="3692499.9984"></div>
+                <div class="dial hours" data-start="12" data-qty="12" data-size="0.69" data-rotation="88619999.9616" data-zeroed="0"></div>
+                <div class="cover" data-logo="&#x2642;" data-brand="mars">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info" data-text="The speed of things in relation to each other, from the fastest car to our own Galaxy. 1Km/s is 3600Km/h or 2237 miles per hour. I like the shape and color of this things even if they are the result of random experiments in CSS. PS: I could not represent the real speed of these objects as your browser thinks they are preposterous.">i</div>
+    <div id="speed">
+        <div class="container">
+        </div>
+    </div>
+
+    <div class="info" data-text="2016 was one of the worst year in memory as we witnessed the departure of some of the greatest icons of our generation.">i</div>
+    <div id="on-this-day">
+        <div class="container metal">
+        </div>
+    </div>
+
+    <div class="info" data-text="The moon completes its synodic period in 29 days and a half. Here represented and animated in CSS only. Might be off as I'm not checking the time of the day but just a date.">i</div>
+    <div id="moon-phase">
+        <div class="container">
+            <div class="moon"></div>
+            <div class="earth-shadow"></div>
+        </div>
+        <div class="description metal">
+            <div class="title"></div>
+            <div class="quote"></div>
+        </div>
+    </div>
+
+    <div class="info" data-text="Today's date in UTC. The month is represented in English, Greek (in both alphabets) and Babylonian.">i</div>
+    <div id="date">
+        <div class="container">
+            <div class="day display big">
+
+            </div>
+            <div class="month display">
+
+            </div>
+            <div class="year display big">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="info" data-text="The Mayan calendar starts on August the 11th, 3114BC. K'in is 1 day, Winal a month made of 20 days, Tun is a period of 18 Winal or 360 days or roughly one year. One K'atun is 20 Tun and finally a Baktun is 20 K'atun, a bit less than 400 of our own years. Incidentally, 13 Baktun represent a Long Count: the Mayan date on December 20th, 2012 was 12.19.19.17.19 the end of a 5,125 years cycle.">i</div>
+    <div class="info right" data-text="Here you can see the date in Younger Futharkh Runes with a rune for the day of the week and a number representing the year in a 19 years cycle also known as a Metonic Cycle; all years starts on a Monday or better a FÉ; my calculations are based on the year 1638 of which we have historic data. The Roman and Jewish calendar are just basic conversions.">i</div>
+    <div id="calendars">
+        <div class="container">
+            <div class="mayan">
+
+            </div>
+            <div class="others">
+                <div class="runic metal">
+
+                </div>
+                <div class="roman metal">
+
+                </div>
+                <div class="jewish metal">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal"></div>
+
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="code.js" type="text/javascript"></script>
+</body>
+</html>
